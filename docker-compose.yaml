@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongodb_registrations
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: reservation_db
+    command: ["--auth"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: 
+      context: ./backend/nest-app
+      dockerfile: Dockerfile
+    container_name: registration_backend
+    restart: always
+    ports:
+      - "3010:3010"
+    environment:
+      - DB_DOMAIN=mongo
+      - DB_USER=root
+      - DB_PASS=example
+      - DB_NAME=reservation_db
+      - PORT=3010
+      - JWT_SECRET=super-secret-key
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: registration_frontend
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_URL=http://localhost:3010
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

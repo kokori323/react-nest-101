@@ -1,0 +1,59 @@
+.admin-page {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.admin-header {
+  margin-bottom: 32px;
+}
+
+.admin-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.admin-subtitle {
+  color: #666;
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+.admin-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  max-width: 500px;
+}
+
+.save-btn {
+  height: 48px;
+  min-width: 160px;
+}
+
+.save-btn.disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
